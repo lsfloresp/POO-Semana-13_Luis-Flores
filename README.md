@@ -28,7 +28,6 @@ El programa está desarrollado siguiendo una **arquitectura modular**, separando
 
 * **Python**
 * **Tkinter** (interfaz gráfica)
-* **JSON** para almacenamiento de datos (Adicional)
 
 ## Estructura del proyecto
 
