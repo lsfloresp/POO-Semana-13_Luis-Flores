@@ -1,5 +1,5 @@
 class Vehiculo:
-    def __init__(self, placa, marca, propietario):
+    def __init__(self, placa: str, marca: str, propietario: str):
         self.placa = placa
         self.marca = marca
         self.propietario = propietario

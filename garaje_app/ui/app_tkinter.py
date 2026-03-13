@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import ttk
-from servicios.garaje_servicio import GarajeServicio
 
 
 class AppGaraje:
@@ -12,7 +11,8 @@ class AppGaraje:
         self.root.geometry("600x400")
         self.root.configure(bg="#2C3E50")
 
-        self.servicio = GarajeServicio()
+        # lista para guardar vehículos en memoria
+        self.vehiculos = []
 
         # TITULO
         titulo = tk.Label(
@@ -85,9 +85,6 @@ class AppGaraje:
 
         self.tabla.pack()
 
-        # cargar datos guardados
-        self.cargar_tabla()
-
     def agregar_vehiculo(self):
 
         placa = self.entry_placa.get()
@@ -96,8 +93,10 @@ class AppGaraje:
 
         if placa and marca and propietario:
 
-            self.servicio.agregar_vehiculo(placa, marca, propietario)
+            # guardar en memoria
+            self.vehiculos.append((placa, marca, propietario))
 
+            # mostrar en tabla
             self.tabla.insert("", "end", values=(placa, marca, propietario))
 
             self.limpiar_campos()
@@ -107,8 +106,3 @@ class AppGaraje:
         self.entry_placa.delete(0, tk.END)
         self.entry_marca.delete(0, tk.END)
         self.entry_propietario.delete(0, tk.END)
-
-    def cargar_tabla(self):
-
-        for v in self.servicio.obtener_vehiculos():
-            self.tabla.insert("", "end", values=(v.placa, v.marca, v.propietario))
